@@ -46,6 +46,8 @@ function App() {
   };
 
   const handleNextPage = async () => {
+    if (!nextURL) return;
+
     setLoading(true);
     let data = await getAllPokemon(nextURL);
     await loadPokemon(data.results);
@@ -69,7 +71,7 @@ function App() {
             </div>
             <div className="btn">
               {prevURL && <button onClick={handlePrevPage}>前へ</button>}
-              <button onClick={handleNextPage}>次へ</button>
+              {nextURL && <button onClick={handleNextPage}>次へ</button>}
             </div>
           </>
         )}
